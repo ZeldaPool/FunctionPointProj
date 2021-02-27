@@ -60,7 +60,7 @@ namespace FunctionPoint1
         {
             UserControl2 useCon = new UserControl2();
             useCon.Dock = DockStyle.Fill;
-            TabPage myTabPage = new TabPage();//Create new tabpage
+            TabPage myTabPage = new TabPage("FunctionPoint");//Create new tabpage
             myTabPage.Controls.Add(useCon);
             FPTab.TabPages.Add(myTabPage);
         }

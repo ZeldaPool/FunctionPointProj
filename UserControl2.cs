@@ -14,11 +14,8 @@ namespace FunctionPoint1
     {
 
         DataStorage ds = new DataStorage();
-        private RadioButton eirb;
-        private RadioButton eorb;
-        private RadioButton eiqrb;
-        private RadioButton ilfrb;
-        private RadioButton elfrb;
+        private decimal totaller;
+        
 
         public UserControl2()
         {
@@ -44,10 +41,12 @@ namespace FunctionPoint1
         private void compFP()
         {
             eittl.Text = ((ds.Ei)*ds.Ei_factor).ToString();
-            eottl.Text = (ds.Eo).ToString();
-            eiqttl.Text = (ds.Eiq).ToString();
-            ilfttl.Text = (ds.Ilf).ToString();
-            elfttl.Text = (ds.Elf).ToString();
+            eottl.Text = ((ds.Eo)*ds.Eo_factor).ToString();
+            eiqttl.Text = ((ds.Eiq)*ds.Eiq_factor).ToString();
+            ilfttl.Text = ((ds.Ilf)*ds.Ilf_factor).ToString();
+            elfttl.Text = ((ds.Elf)*ds.Elf_factor).ToString();
+            totaller = (((ds.Ei) * ds.Ei_factor) + ((ds.Eo) * ds.Eo_factor) +((ds.Eiq) * ds.Eiq_factor) +((ds.Ilf) * ds.Ilf_factor) +((ds.Elf) * ds.Elf_factor));
+            ttlCount.Text = totaller.ToString();
 
         }
 
@@ -97,14 +96,14 @@ namespace FunctionPoint1
             {
                 // Keep track of the selected RadioButton by saving a reference
                 // to it.
-                eirb = rb;
-                ds.Ei_factor = decimal.Parse(eirb.Text);
+               /* eirb = rb;*/
+                ds.Ei_factor = decimal.Parse(rb.Text);
                 
 
             }
         }
 
-        /*private void eo_CheckedChanged(object sender, EventArgs e)
+        private void eo_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton rb = sender as RadioButton;
 
@@ -120,8 +119,8 @@ namespace FunctionPoint1
             {
                 // Keep track of the selected RadioButton by saving a reference
                 // to it.
-                eorb = rb;
-               
+                ds.Eo_factor = decimal.Parse(rb.Text);
+
 
             }
         }
@@ -142,8 +141,8 @@ namespace FunctionPoint1
             {
                 // Keep track of the selected RadioButton by saving a reference
                 // to it.
-                eiqrb = rb;
-                
+                ds.Eiq_factor = decimal.Parse(rb.Text);
+
 
             }
         }
@@ -164,8 +163,8 @@ namespace FunctionPoint1
             {
                 // Keep track of the selected RadioButton by saving a reference
                 // to it.
-                ilfrb = rb;
-                
+                ds.Ilf_factor = decimal.Parse(rb.Text);
+
 
             }
         }
@@ -186,11 +185,11 @@ namespace FunctionPoint1
             {
                 // Keep track of the selected RadioButton by saving a reference
                 // to it.
-                elfrb = rb;
-                
+                ds.Elf_factor = decimal.Parse(rb.Text);
+
 
             }
-        }*/
+        }
 
         private void eiwf1_CheckedChanged(object sender, EventArgs e)
         {
