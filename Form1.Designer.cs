@@ -157,7 +157,7 @@ namespace FunctionPoint1
             this.FPTab.Location = new System.Drawing.Point(0, 27);
             this.FPTab.Name = "FPTab";
             this.FPTab.SelectedIndex = 0;
-            this.FPTab.Size = new System.Drawing.Size(905, 460);
+            this.FPTab.Size = new System.Drawing.Size(905, 697);
             this.FPTab.TabIndex = 3;
             // 
             // tabPage1
@@ -165,7 +165,7 @@ namespace FunctionPoint1
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(897, 434);
+            this.tabPage1.Size = new System.Drawing.Size(897, 671);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Welcome";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -174,11 +174,11 @@ namespace FunctionPoint1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(905, 490);
+            this.ClientSize = new System.Drawing.Size(905, 723);
             this.Controls.Add(this.FPTab);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "CECS 543 Metrics Suite ";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

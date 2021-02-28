@@ -48,7 +48,7 @@ namespace FunctionPoint1
 
         private void functionpointMetric_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(langForm.LangSelected);
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)

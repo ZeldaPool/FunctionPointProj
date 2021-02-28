@@ -15,7 +15,11 @@ namespace FunctionPoint1
 
         DataStorage ds = new DataStorage();
         private decimal totaller;
-        
+        Form2 langForm = new Form2();
+        Form5 vaf = new Form5();
+
+        public decimal fpValue;
+       
 
         public UserControl2()
         {
@@ -47,7 +51,19 @@ namespace FunctionPoint1
             elfttl.Text = ((ds.Elf)*ds.Elf_factor).ToString();
             totaller = (((ds.Ei) * ds.Ei_factor) + ((ds.Eo) * ds.Eo_factor) +((ds.Eiq) * ds.Eiq_factor) +((ds.Ilf) * ds.Ilf_factor) +((ds.Elf) * ds.Elf_factor));
             ttlCount.Text = totaller.ToString();
+            ds.LangSel = label12.Text;
 
+            /*FP = CT * [0.65 + 0.01 * VAF]*/
+
+            decimal vaf = int.Parse(vaflbl.Text);
+            decimal temp = Convert.ToDecimal(0.01);
+            decimal temp2 = Convert.ToDecimal(0.65);
+
+
+            fpValue = totaller * (temp2 + (temp * vaf));
+            fpFinal.Text = fpValue.ToString("N");
+
+            
         }
 
         private void eival_ValueChanged(object sender, EventArgs e)
@@ -191,9 +207,42 @@ namespace FunctionPoint1
             }
         }
 
-        private void eiwf1_CheckedChanged(object sender, EventArgs e)
-        {
+        
 
+        private void UserControl2_Load(object sender, EventArgs e)
+        {
+            Console.WriteLine("LOADLOAD");
+        }
+
+        private void changeLanguage_Click(object sender, EventArgs e)
+        {
+            langForm = new Form2();
+            langForm.labelChange(label12, label13);
+            langForm.Show();
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+            
+                
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if(vaf.IsDisposed)
+            {
+                vaf = new Form5();
+            }
+ 
+            vaf.labelChange(vaflbl);
+            vaf.Show();
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            label14.Text = (int.Parse(label13.Text) * fpValue).ToString();
         }
     }
 }

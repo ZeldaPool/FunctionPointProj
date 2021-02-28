@@ -14,11 +14,19 @@ namespace FunctionPoint1
         private decimal ilf;
         private decimal elf;
 
-        private decimal ei_factor;
-        private decimal eo_factor;
-        private decimal eiq_factor;
-        private decimal ilf_factor;
-        private decimal elf_factor;
+        private decimal ei_factor=4;
+        private decimal eo_factor=5;
+        private decimal eiq_factor=4;
+        private decimal ilf_factor=10;
+        private decimal elf_factor=7;
+
+        private string langSel = "none";
+
+        private decimal vaftotal = 0;
+
+        private int codeSize = 0;
+
+        List<decimal> vafVals = new List<decimal>();
 
         public decimal Ei { get => ei; set => ei = value; }
         public decimal Eo { get => eo; set => eo = value; }
@@ -30,6 +38,8 @@ namespace FunctionPoint1
         public decimal Eiq_factor { get => eiq_factor; set => eiq_factor = value; }
         public decimal Ilf_factor { get => ilf_factor; set => ilf_factor = value; }
         public decimal Elf_factor { get => elf_factor; set => elf_factor = value; }
-
+        public string LangSel { get => langSel; set => langSel = value; }
+        public decimal Vaftotal { get => vaftotal; set => vaftotal = value; }
+        public int CodeSize { get => codeSize; set => codeSize = value; }
     }
 }

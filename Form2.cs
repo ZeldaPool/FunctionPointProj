@@ -14,6 +14,25 @@ namespace FunctionPoint1
     {
         private string langSelected;
         private RadioButton selectedrb;
+        private Label labellabel;
+        private Label codecode;
+
+        Dictionary<string, int> My_dict2 =
+              new Dictionary<string, int>(){
+                                  {"Assembler", 337},
+                                  {"ADA 95", 154},
+                                  {"C", 148},
+                                  {"C++", 59},
+                                  {"C#", 58},
+                                  {"COBOL", 80},
+                                  {"FORTRAN", 90},
+                                  {"HTML", 43},
+                                  {"JAVA", 55},
+                                  {"JavaScript", 54},
+                                  {"VB Script", 38},
+                                  {"Visual Basic", 50}
+              };
+
 
         public string LangSelected { get => langSelected; set => langSelected = value; }
 
@@ -32,7 +51,7 @@ namespace FunctionPoint1
 
         private void button1_Click(object sender, EventArgs e)
         {
-         
+            Console.WriteLine(My_dict2["Assembler"]);
             Close();
         }
 
@@ -59,11 +78,23 @@ namespace FunctionPoint1
                 // to it.
                 selectedrb = rb;
                 langSelected = selectedrb.Text;
-               
+                labellabel.Text = langSelected;
+                codecode.Text = My_dict2[langSelected].ToString();
             }
         }
 
+        public void labelChange(Label lbl, Label codesize)
+        {
+            labellabel = lbl;
+            codecode = codesize;
 
-       
+            
+        }
+
+
+        public static implicit operator string(Form2 v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
