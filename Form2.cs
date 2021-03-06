@@ -16,6 +16,7 @@ namespace FunctionPoint1
         private RadioButton selectedrb;
         private Label labellabel;
         private Label codecode;
+        private DataStorage datastorage;
 
         Dictionary<string, int> My_dict2 =
               new Dictionary<string, int>(){
@@ -80,14 +81,15 @@ namespace FunctionPoint1
                 langSelected = selectedrb.Text;
                 labellabel.Text = langSelected;
                 codecode.Text = My_dict2[langSelected].ToString();
+                datastorage.LangSel = langSelected;
             }
         }
 
-        public void labelChange(Label lbl, Label codesize)
+        public void labelChange(Label lbl, Label codesize, DataStorage ds)
         {
             labellabel = lbl;
             codecode = codesize;
-
+            datastorage = ds;
             
         }
 

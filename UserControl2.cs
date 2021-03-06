@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +21,8 @@ namespace FunctionPoint1
         Form5 vaf = new Form5();
 
         public decimal fpValue;
-       
+
+        public DataStorage Ds { get => ds; set => ds = value; }
 
         public UserControl2()
         {
@@ -44,14 +47,20 @@ namespace FunctionPoint1
 
         private void compFP()
         {
-            eittl.Text = ((ds.Ei)*ds.Ei_factor).ToString();
-            eottl.Text = ((ds.Eo)*ds.Eo_factor).ToString();
-            eiqttl.Text = ((ds.Eiq)*ds.Eiq_factor).ToString();
-            ilfttl.Text = ((ds.Ilf)*ds.Ilf_factor).ToString();
-            elfttl.Text = ((ds.Elf)*ds.Elf_factor).ToString();
-            totaller = (((ds.Ei) * ds.Ei_factor) + ((ds.Eo) * ds.Eo_factor) +((ds.Eiq) * ds.Eiq_factor) +((ds.Ilf) * ds.Ilf_factor) +((ds.Elf) * ds.Elf_factor));
+            eittl.Text = ((Ds.Ei)*Ds.Ei_factor).ToString();
+            eottl.Text = ((Ds.Eo)*Ds.Eo_factor).ToString();
+            eiqttl.Text = ((Ds.Eiq)*Ds.Eiq_factor).ToString();
+            ilfttl.Text = ((Ds.Ilf)*Ds.Ilf_factor).ToString();
+            elfttl.Text = ((Ds.Elf)*Ds.Elf_factor).ToString();
+            totaller = (((Ds.Ei) * Ds.Ei_factor) + ((Ds.Eo) * Ds.Eo_factor) +((Ds.Eiq) * Ds.Eiq_factor) +((Ds.Ilf) * Ds.Ilf_factor) +((Ds.Elf) * Ds.Elf_factor));
             ttlCount.Text = totaller.ToString();
-            ds.LangSel = label12.Text;
+            Ds.LangSel = label12.Text;
+
+            Ds.EiTotal  = int.Parse(eittl.Text);
+            Ds.EoTotal  = int.Parse(eottl.Text);
+            Ds.EiqTotal = int.Parse(eiqttl.Text);
+            Ds.IlfTotal = int.Parse(ilfttl.Text);
+            Ds.ElfTotal = int.Parse(elfttl.Text);
 
             /*FP = CT * [0.65 + 0.01 * VAF]*/
 
@@ -63,37 +72,39 @@ namespace FunctionPoint1
             fpValue = totaller * (temp2 + (temp * vaf));
             fpFinal.Text = fpValue.ToString("N");
 
+            Ds.ComputedFP = decimal.Parse(fpFinal.Text);
+
             
         }
 
         private void eival_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown nm1 = (NumericUpDown)sender;
-            ds.Ei = nm1.Value;
+            Ds.Ei = nm1.Value;
         }
 
         private void eoval_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown nm1 = (NumericUpDown)sender;
-            ds.Eo = nm1.Value;
+            Ds.Eo = nm1.Value;
         }
 
         private void eiqval_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown nm1 = (NumericUpDown)sender;
-            ds.Eiq = nm1.Value;
+            Ds.Eiq = nm1.Value;
         }
 
         private void ilfval_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown nm1 = (NumericUpDown)sender;
-            ds.Ilf = nm1.Value;
+            Ds.Ilf = nm1.Value;
         }
 
         private void elfval_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown nm1 = (NumericUpDown)sender;
-            ds.Elf = nm1.Value;
+            Ds.Elf = nm1.Value;
         }
 
         private void ei_CheckedChanged(object sender, EventArgs e)
@@ -113,7 +124,7 @@ namespace FunctionPoint1
                 // Keep track of the selected RadioButton by saving a reference
                 // to it.
                /* eirb = rb;*/
-                ds.Ei_factor = decimal.Parse(rb.Text);
+                Ds.Ei_factor = decimal.Parse(rb.Text);
                 
 
             }
@@ -135,7 +146,7 @@ namespace FunctionPoint1
             {
                 // Keep track of the selected RadioButton by saving a reference
                 // to it.
-                ds.Eo_factor = decimal.Parse(rb.Text);
+                Ds.Eo_factor = decimal.Parse(rb.Text);
 
 
             }
@@ -157,7 +168,7 @@ namespace FunctionPoint1
             {
                 // Keep track of the selected RadioButton by saving a reference
                 // to it.
-                ds.Eiq_factor = decimal.Parse(rb.Text);
+                Ds.Eiq_factor = decimal.Parse(rb.Text);
 
 
             }
@@ -179,7 +190,7 @@ namespace FunctionPoint1
             {
                 // Keep track of the selected RadioButton by saving a reference
                 // to it.
-                ds.Ilf_factor = decimal.Parse(rb.Text);
+                Ds.Ilf_factor = decimal.Parse(rb.Text);
 
 
             }
@@ -201,7 +212,7 @@ namespace FunctionPoint1
             {
                 // Keep track of the selected RadioButton by saving a reference
                 // to it.
-                ds.Elf_factor = decimal.Parse(rb.Text);
+                Ds.Elf_factor = decimal.Parse(rb.Text);
 
 
             }
@@ -211,13 +222,13 @@ namespace FunctionPoint1
 
         private void UserControl2_Load(object sender, EventArgs e)
         {
-            Console.WriteLine("LOADLOAD");
+           
         }
 
         private void changeLanguage_Click(object sender, EventArgs e)
         {
             langForm = new Form2();
-            langForm.labelChange(label12, label13);
+            langForm.labelChange(label12, label13, Ds);
             langForm.Show();
 
         }
@@ -235,7 +246,7 @@ namespace FunctionPoint1
                 vaf = new Form5();
             }
  
-            vaf.labelChange(vaflbl);
+            vaf.labelChange(vaflbl, Ds);
             vaf.Show();
             
         }
@@ -244,5 +255,9 @@ namespace FunctionPoint1
         {
             label14.Text = (int.Parse(label13.Text) * fpValue).ToString();
         }
+
+       
+
+        
     }
 }

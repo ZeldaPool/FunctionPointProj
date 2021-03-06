@@ -12,9 +12,16 @@ namespace FunctionPoint1
 {
     public partial class Form3 : Form
     {
-        public Form3()
+
+        ProjectDetails projDet = new ProjectDetails();
+        Form1 titleChange;
+
+        internal ProjectDetails ProjDet { get => projDet; set => projDet = value; }
+
+        public Form3(Form1 form1)
         {
             InitializeComponent();
+            titleChange = form1;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -30,6 +37,20 @@ namespace FunctionPoint1
         private void Form3_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ProjDet.ProjectName = "CECS 543 METRIC SUITE " + textBox1.Text;
+            ProjDet.ProductName = textBox2.Text;
+            ProjDet.CreatorName = textBox3.Text;
+            ProjDet.Comment = richTextBox1.Text;
+            titleChange.Text = "CECS 543 METRIC SUITE " + textBox1.Text;
+            titleChange.Update();
+
+            titleChange.clearPanes();
+
+            Hide();
         }
     }
 }

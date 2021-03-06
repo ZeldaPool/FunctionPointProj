@@ -76,26 +76,28 @@ namespace FunctionPoint1
             // newFile
             // 
             this.newFile.Name = "newFile";
-            this.newFile.Size = new System.Drawing.Size(103, 22);
+            this.newFile.Size = new System.Drawing.Size(180, 22);
             this.newFile.Text = "New";
             this.newFile.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openFile
             // 
             this.openFile.Name = "openFile";
-            this.openFile.Size = new System.Drawing.Size(103, 22);
+            this.openFile.Size = new System.Drawing.Size(180, 22);
             this.openFile.Text = "Open";
+            this.openFile.Click += new System.EventHandler(this.openFile_Click);
             // 
             // saveFile
             // 
             this.saveFile.Name = "saveFile";
-            this.saveFile.Size = new System.Drawing.Size(103, 22);
+            this.saveFile.Size = new System.Drawing.Size(180, 22);
             this.saveFile.Text = "Save";
+            this.saveFile.Click += new System.EventHandler(this.saveFile_Click);
             // 
             // exitFile
             // 
             this.exitFile.Name = "exitFile";
-            this.exitFile.Size = new System.Drawing.Size(103, 22);
+            this.exitFile.Size = new System.Drawing.Size(180, 22);
             this.exitFile.Text = "Exit";
             this.exitFile.Click += new System.EventHandler(this.exitFile_Click);
             // 
@@ -150,6 +152,7 @@ namespace FunctionPoint1
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // FPTab
             // 
