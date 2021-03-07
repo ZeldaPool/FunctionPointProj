@@ -26,15 +26,13 @@ namespace FunctionPoint1
 
         private int codeSize = 0;
 
-        private int eiTotal = 0;
-        private int eoTotal = 0;
-        private int eiqTotal = 0;
-        private int ilfTotal = 0;
-        private int elfTotal = 0;
+        private decimal eiTotal = 0;
+        private decimal eoTotal = 0;
+        private decimal eiqTotal = 0;
+        private decimal ilfTotal = 0;
+        private decimal elfTotal = 0;
 
         private decimal computedFP = 0;
-
-
 
         List<int> vafVals = new List<int>();
 
@@ -52,11 +50,11 @@ namespace FunctionPoint1
         public decimal Vaftotal { get => vaftotal; set => vaftotal = value; }
         public int CodeSize { get => codeSize; set => codeSize = value; }
         public List<int> VafVals { get => vafVals; set => vafVals = value; }
-        public int EiTotal { get => eiTotal; set => eiTotal = value; }
-        public int EoTotal { get => eoTotal; set => eoTotal = value; }
-        public int EiqTotal { get => eiqTotal; set => eiqTotal = value; }
-        public int IlfTotal { get => ilfTotal; set => ilfTotal = value; }
-        public int ElfTotal { get => elfTotal; set => elfTotal = value; }
+        public decimal EiTotal { get => eiTotal; set => eiTotal = value; }
+        public decimal EoTotal { get => eoTotal; set => eoTotal = value; }
+        public decimal EiqTotal { get => eiqTotal; set => eiqTotal = value; }
+        public decimal IlfTotal { get => ilfTotal; set => ilfTotal = value; }
+        public decimal ElfTotal { get => elfTotal; set => elfTotal = value; }
         public decimal ComputedFP { get => computedFP; set => computedFP = value; }
     }
 }

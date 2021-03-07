@@ -47,9 +47,13 @@ namespace FunctionPoint1
             ProjDet.Comment = richTextBox1.Text;
             titleChange.Text = "CECS 543 METRIC SUITE " + textBox1.Text;
             titleChange.Update();
-
             titleChange.clearPanes();
 
+            Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
             Hide();
         }
     }

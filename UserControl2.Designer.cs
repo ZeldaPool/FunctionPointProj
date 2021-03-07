@@ -342,6 +342,7 @@ namespace FunctionPoint1
             this.groupBox1.Size = new System.Drawing.Size(316, 28);
             this.groupBox1.TabIndex = 46;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // eiwf3
             // 
@@ -392,6 +393,7 @@ namespace FunctionPoint1
             this.groupBox2.Size = new System.Drawing.Size(316, 28);
             this.groupBox2.TabIndex = 47;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // eowf3
             // 

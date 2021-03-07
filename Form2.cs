@@ -79,9 +79,14 @@ namespace FunctionPoint1
                 // to it.
                 selectedrb = rb;
                 langSelected = selectedrb.Text;
-                labellabel.Text = langSelected;
-                codecode.Text = My_dict2[langSelected].ToString();
-                datastorage.LangSel = langSelected;
+                if (labellabel != null)
+                {
+                    labellabel.Text = langSelected;
+                    codecode.Text = My_dict2[langSelected].ToString();
+                    datastorage.LangSel = langSelected;
+                }
+
+                
             }
         }
 

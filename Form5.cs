@@ -19,10 +19,12 @@ namespace FunctionPoint1
         List<decimal> vafVals = new List<decimal>();
 
         public List<decimal> VafVals { get => vafVals; set => vafVals = value; }
+        public DataStorage Datastorage { get => datastorage; set => datastorage = value; }
 
-        public Form5()
+        public Form5(DataStorage ds)
         {
             InitializeComponent();
+            Datastorage = ds;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -54,10 +56,10 @@ namespace FunctionPoint1
             int.Parse(vf13.SelectedItem.ToString())+
             int.Parse(vf14.SelectedItem.ToString());*/
 
-            datastorage.VafVals = new List<int>();
+            Datastorage.VafVals = new List<int>();
             vafttl = 0;
 
-            datastorage.VafVals.AddRange(new List<int>() {
+            Datastorage.VafVals.AddRange(new List<int>() {
             int.Parse(vf1.SelectedItem.ToString()) ,
             int.Parse(vf2.SelectedItem.ToString()) ,
             int.Parse(vf3.SelectedItem.ToString()) ,
@@ -74,13 +76,14 @@ namespace FunctionPoint1
             int.Parse(vf14.SelectedItem.ToString())
              });
 
-            datastorage.VafVals.ForEach((val) =>
+            Datastorage.VafVals.ForEach((val) =>
             {
                 vafttl += val;
             });
 
             /*vafttl = totalvf;*/
             labellabel.Text = vafttl.ToString();
+            Datastorage.Vaftotal = vafttl;
 
             Hide();
         }
@@ -88,13 +91,32 @@ namespace FunctionPoint1
         public void labelChange(Label lbl, DataStorage ds)
         {
             labellabel = lbl;
-            datastorage = ds;
+            Datastorage = ds;
         }
 
        
 
         private void Form5_Load(object sender, EventArgs e)
         {
+            if(Datastorage.VafVals.Count != 0)
+            {
+                vf1.Text = Datastorage.VafVals[0].ToString();
+                vf2.Text = Datastorage.VafVals[1].ToString();
+                vf3.Text = Datastorage.VafVals[2].ToString();
+                vf4.Text = Datastorage.VafVals[3].ToString();
+                vf5.Text = Datastorage.VafVals[4].ToString();
+                vf6.Text = Datastorage.VafVals[5].ToString();
+                vf7.Text = Datastorage.VafVals[6].ToString();
+                vf8.Text = Datastorage.VafVals[7].ToString();
+                vf9.Text = Datastorage.VafVals[8].ToString();
+                vf10.Text = Datastorage.VafVals[9].ToString();
+                vf11.Text = Datastorage.VafVals[10].ToString();
+                vf12.Text = Datastorage.VafVals[11].ToString();
+                vf13.Text = Datastorage.VafVals[12].ToString();
+                vf14.Text = Datastorage.VafVals[13].ToString();            
+
+            }
+            
 
         }
 

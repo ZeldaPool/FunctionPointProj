@@ -17,13 +17,15 @@ namespace FunctionPoint1
         Form2 langForm = new Form2();
         Form3 newProj;
         /* DataStorage ds = new DataStorage();*/
-        ProjectDetails projDet;    
+        ProjectDetails projDet;
+        UserControl2 useCon;
 
         List<DataStorage> dslist = new List<DataStorage>();
-
+        List<UserControl2> ucList = new List<UserControl2>();
 
         public List<DataStorage> Dslist { get => dslist; set => dslist = value; }
-        
+        public List<UserControl2> UcList { get => ucList; set => ucList = value; }
+
 
 
         /*public DataStorage Ds { get => ds; set => ds = value; }*/
@@ -54,9 +56,24 @@ namespace FunctionPoint1
 
         private void languagePreference_Click(object sender, EventArgs e)
         {
-            langForm = new Form2();
-            langForm.Show();
+
             
+            if(UcList.Count != 0)
+            {
+                ucList.ForEach(val =>
+                {
+                    if (val.Visible)
+                    {
+                        val.changeLang();
+                    }
+                });
+               /*useCon.changeLang();*/         
+            }
+            else
+            {
+                langForm = new Form2();
+                langForm.Show();
+            }
         }
 
         private void functionpointMetric_Click(object sender, EventArgs e)
@@ -71,7 +88,8 @@ namespace FunctionPoint1
 
         private void enterFPDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UserControl2 useCon = new UserControl2();
+            useCon = new UserControl2(new DataStorage());
+            ucList.Add(useCon);
             useCon.Dock = DockStyle.Fill;
             TabPage myTabPage = new TabPage("FunctionPoint");//Create new tabpage
             myTabPage.Controls.Add(useCon);
@@ -130,6 +148,28 @@ namespace FunctionPoint1
             }
         }
 
+        public void loadPanes()
+        {
+            this.Text = projDet.ProjectName;
+
+            projDet.Dslist.ForEach(x =>
+            {
+                UserControl2 useCon = new UserControl2(x);
+                ucList.Add(useCon);
+                useCon.Dock = DockStyle.Fill;
+                TabPage myTabPage = new TabPage("FunctionPoint");//Create new tabpage
+                myTabPage.Controls.Add(useCon);
+                FPTab.TabPages.Add(myTabPage);
+
+                useCon.Ds = x;
+                
+                /*DataStorage ds = new DataStorage();
+                ds = useCon.Ds;
+                dslist.Add(ds);*/
+            });
+
+        }
+
         private void openFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -144,9 +184,10 @@ namespace FunctionPoint1
                 using (StreamReader file = File.OpenText(filename))
                 {
                     JsonSerializer serializer = new JsonSerializer();
-                    ProjectDetails openedFile = (ProjectDetails)serializer.Deserialize(file, typeof(ProjectDetails));
-                    Console.WriteLine(openedFile.ProjectName);
-                }
+                    projDet = (ProjectDetails)serializer.Deserialize(file, typeof(ProjectDetails));
+                    clearPanes();
+                    loadPanes();
+                }   
 
             }
         }
