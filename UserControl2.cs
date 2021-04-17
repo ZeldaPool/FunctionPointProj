@@ -59,10 +59,7 @@ namespace FunctionPoint1
             elfval.Text = Ds.Elf.ToString();
 
             loadFactors();
-            
-            
-
-
+                      
             vaflbl.Text = Ds.Vaftotal.ToString();
             Console.WriteLine(Ds.Vaftotal);
  

@@ -13,10 +13,14 @@ namespace FunctionPoint1
     public partial class UCPUserControl : UserControl
     {
 
-        UCPDataStorage ucpDS = new UCPDataStorage();
-        public UCPUserControl()
+        private UCPDataStorage ucpDS = new UCPDataStorage();
+
+        public UCPDataStorage UcpDS { get => ucpDS; set => ucpDS = value; }
+
+        public UCPUserControl(UCPDataStorage ucpDS)
         {
             InitializeComponent();
+            this.UcpDS = ucpDS;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -26,11 +30,11 @@ namespace FunctionPoint1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TCFform form = new TCFform(ucpDS);
+            TCFform form = new TCFform(UcpDS);
 
             if (form.IsDisposed)
             {
-                form = new TCFform(ucpDS);
+                form = new TCFform(UcpDS);
             }
 
             form.changeLabel(tcfvallbl);
@@ -39,16 +43,45 @@ namespace FunctionPoint1
 
         private void UCPUserControl_Load(object sender, EventArgs e)
         {
-            
+            dataload();
+        }
+
+        private void dataload()
+        {
+            UUCWA.Value=UcpDS.UUCWAval1;
+            UUCWS.Value=UcpDS.UUCWSval1;
+            UUCWC.Value=UcpDS.UUCWCval1;
+            UAWS.Value=UcpDS.UAWSval1;
+            UAWA.Value=UcpDS.UAWAval1;
+            UAWC.Value=UcpDS.UAWCval1;
+
+            UUCWTotal.Text = UcpDS.UUCWTotalVal1.ToString();
+            UAWTotal.Text = UcpDS.UAWTotalVal1.ToString();
+
+            UCPTotal.Text = UcpDS.UCPVal1.ToString();
+            UUCPTotal.Text = UcpDS.UUCPVal1.ToString();
+
+            prodFac.Value=UcpDS.PFval1;
+            locUCP.Value=UcpDS.LOCUCPval1;
+            locPM.Value=UcpDS.LOCPMval1;
+
+            estHrs.Text=UcpDS.EstHrsVal.ToString();
+            estLOC.Text=UcpDS.EstLocVal.ToString();
+            estPM.Text=UcpDS.EstPMVal.ToString();
+
+            tcfvallbl.Text=UcpDS.TCFVal1.ToString();
+            ecfvallbl.Text=UcpDS.ECFVal1.ToString();
+           
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ECFform form = new ECFform(ucpDS);
+            ECFform form = new ECFform(UcpDS);
 
             if (form.IsDisposed)
             {
-                form = new ECFform(ucpDS);
+                form = new ECFform(UcpDS);
             }
 
             form.changeLabel(ecfvallbl);
@@ -67,35 +100,37 @@ namespace FunctionPoint1
             UUCPTotal.Text = UUCP.ToString();
 
             UCP = decimal.Parse(tcfvallbl.Text) * decimal.Parse(ecfvallbl.Text) * (UUCWVal + UAWVal);
+            UCP = decimal.Round(UCP, 3, MidpointRounding.AwayFromZero);
             UCPTotal.Text = UCP.ToString();
+            
+            estLOC.Text = decimal.Round((UCP * locUCP.Value), 3, MidpointRounding.AwayFromZero).ToString();
+            estHrs.Text = decimal.Round((UCP * prodFac.Value), 3, MidpointRounding.AwayFromZero).ToString();
+            estPM.Text  = decimal.Round(((UCP * locUCP.Value) / locPM.Value), 3, MidpointRounding.AwayFromZero).ToString();
 
-            estLOC.Text = (UCP * locUCP.Value).ToString();
-            estHrs.Text = (UCP * prodFac.Value).ToString();
-            estPM.Text = ((UCP * locUCP.Value) / locPM.Value).ToString();
+            //Save To UCPDs
+            UcpDS.UUCWAval1 = UUCWA.Value;
+            UcpDS.UUCWSval1 = UUCWS.Value;
+            UcpDS.UUCWCval1 = UUCWC.Value;
+            UcpDS.UAWSval1 = UAWS.Value;
+            UcpDS.UAWAval1 = UAWA.Value;
+            UcpDS.UAWCval1 = UAWC.Value;
 
-            ucpDS.UUCWAval1 = UUCWA.Value;
-            ucpDS.UUCWSval1 = UUCWS.Value;
-            ucpDS.UUCWCval1 = UUCWC.Value;
-            ucpDS.UAWSval1 = UAWS.Value;
-            ucpDS.UAWAval1 = UAWA.Value;
-            ucpDS.UAWCval1 = UAWC.Value;
+            UcpDS.UUCWTotalVal1 = UUCWVal;
+            UcpDS.UAWTotalVal1 = UAWVal;
 
-            ucpDS.UUCWTotalVal1 = UUCWVal;
-            ucpDS.UAWTotalVal1 = UAWVal;
+            UcpDS.UCPVal1 = UCP;
+            UcpDS.UUCPVal1 = UUCP;
 
-            ucpDS.UCPVal1 = UCP;
-            ucpDS.UUCPVal1 = UUCP;
+            UcpDS.PFval1 = prodFac.Value;
+            UcpDS.LOCUCPval1 = locUCP.Value;
+            UcpDS.LOCPMval1 = locPM.Value;
 
-            ucpDS.PFval1 = prodFac.Value;
-            ucpDS.LOCUCPval1 = locUCP.Value;
-            ucpDS.LOCPMval1 = locPM.Value;
+            UcpDS.EstHrsVal = decimal.Parse(estHrs.Text);
+            UcpDS.EstLocVal = decimal.Parse(estLOC.Text);
+            UcpDS.EstPMVal = decimal.Parse(estPM.Text);
 
-            ucpDS.EstHrsVal = decimal.Parse(estHrs.Text);
-            ucpDS.EstLocVal = decimal.Parse(estLOC.Text);
-            ucpDS.EstPMVal = decimal.Parse(estPM.Text);
-
-            ucpDS.TCFVal1 = decimal.Parse(tcfvallbl.Text);
-            ucpDS.ECFVal1 = decimal.Parse(ecfvallbl.Text);
+            UcpDS.TCFVal1 = decimal.Parse(tcfvallbl.Text);
+            UcpDS.ECFVal1 = decimal.Parse(ecfvallbl.Text);
 
         }
 

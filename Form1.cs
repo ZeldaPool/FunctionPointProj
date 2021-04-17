@@ -21,13 +21,20 @@ namespace FunctionPoint1
         UserControl2 useCon;
         UCPUserControl ucpUC;
 
+        //FP
         List<DataStorage> dslist = new List<DataStorage>();
         List<UserControl2> ucList = new List<UserControl2>();
+        
+        //UCP
+        List<UCPDataStorage> ucpdslist = new List<UCPDataStorage>();
         List<UCPUserControl> ucpList = new List<UCPUserControl>();
 
 
         public List<DataStorage> Dslist { get => dslist; set => dslist = value; }
         public List<UserControl2> UcList { get => ucList; set => ucList = value; }
+        //UCP
+        public List<UCPDataStorage> Ucpdslist { get => ucpdslist; set => ucpdslist = value; }
+        public List<UCPUserControl> UcpList { get => ucpList; set => ucpList = value; }
 
 
 
@@ -132,6 +139,7 @@ namespace FunctionPoint1
 
             projDet = newProj.ProjDet;
             projDet.Dslist = dslist;
+            projDet.Ucplist = Ucpdslist;
 
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -166,12 +174,13 @@ namespace FunctionPoint1
                 FPTab.TabPages.RemoveAt(i--);
             }
             this.dslist = new List<DataStorage>();
+            this.ucpdslist = new List<UCPDataStorage>();
         }
 
         public void loadPanes()
         {
             this.Text = projDet.ProjectName;
-            
+        
             projDet.Dslist.ForEach(x =>
             {
                 UserControl2 useCon = new UserControl2(x);
@@ -188,6 +197,25 @@ namespace FunctionPoint1
                 dslist.Add(ds);
             });
 
+
+            projDet.Ucplist.ForEach(x =>
+            {
+                UCPUserControl ucpuseCon = new UCPUserControl(x);
+                ucpList.Add(ucpuseCon);
+                ucpuseCon.Dock = DockStyle.Fill;
+                TabPage myTabPage = new TabPage("UseCasePoint");//Create new tabpage
+                myTabPage.Controls.Add(ucpuseCon);
+                FPTab.TabPages.Add(myTabPage);
+
+                ucpuseCon.UcpDS = x;
+
+                UCPDataStorage ucpds = new UCPDataStorage();
+                
+                ucpds=ucpuseCon.UcpDS;
+                Ucpdslist.Add(ucpuseCon.UcpDS);
+            });
+
+
         }
 
         private void openFile_Click(object sender, EventArgs e)
@@ -201,7 +229,8 @@ namespace FunctionPoint1
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 
-                ucList = new List<UserControl2>();               
+                ucList = new List<UserControl2>();
+                ucpList = new List<UCPUserControl>();
                 string filename = openFileDialog.FileName;
                 // serialize JSON directly to a file
                 using (StreamReader file = File.OpenText(filename))
@@ -229,17 +258,18 @@ namespace FunctionPoint1
 
         private void enterUCPToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ucpUC = new UCPUserControl();
-            ucpList.Add(ucpUC);
+            ucpUC = new UCPUserControl(new UCPDataStorage());
+            UcpList.Add(ucpUC);
             ucpUC.Dock = DockStyle.Fill;
             TabPage myTabPage = new TabPage("UseCasePoint");//Create new tabpage
             myTabPage.Controls.Add(ucpUC);
             FPTab.TabPages.Add(myTabPage);
+            UCPDataStorage ucpDS = new UCPDataStorage();
+            ucpDS=ucpUC.UcpDS;
+            //Add new UCPDatastorage in UCPList
+            Ucpdslist.Add(ucpUC.UcpDS);
 
-            /*DataStorage ds = new DataStorage();
-            ds = useCon.Ds;*/
-            //Add New DataStorage object to new List
-            //dslist.Add(ds);
+           
         }
     }
 }
