@@ -41,6 +41,7 @@ namespace FunctionPoint1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            titleChange.UcList = new List<UserControl2>();
             ProjDet.ProjectName = "CECS 543 METRIC SUITE " + textBox1.Text;
             ProjDet.ProductName = textBox2.Text;
             ProjDet.CreatorName = textBox3.Text;

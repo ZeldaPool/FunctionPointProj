@@ -18,10 +18,13 @@ namespace FunctionPoint1
 
         List<DataStorage> dslist = new List<DataStorage>();
 
+        List<UCPDataStorage> ucplist = new List<UCPDataStorage>();
+
         public string ProjectName { get => projectName; set => projectName = value; }
         public string ProductName { get => productName; set => productName = value; }
         public string CreatorName { get => creatorName; set => creatorName = value; }
         public string Comment { get => comment; set => comment = value; }
         public List<DataStorage> Dslist { get => dslist; set => dslist = value; }
+        public List<UCPDataStorage> Ucplist { get => ucplist; set => ucplist = value; }
     }
 }

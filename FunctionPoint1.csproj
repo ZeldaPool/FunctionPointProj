@@ -64,6 +64,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ECFform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ECFform.Designer.cs">
+      <DependentUpon>ECFform.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectDetails.cs" />
     <Compile Include="DataStorage.cs" />
     <Compile Include="Form1.cs">
@@ -92,12 +98,28 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TCFform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCFform.Designer.cs">
+      <DependentUpon>TCFform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPDataStorage.cs" />
+    <Compile Include="UCPUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPUserControl.Designer.cs">
+      <DependentUpon>UCPUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControl2.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControl2.Designer.cs">
       <DependentUpon>UserControl2.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ECFform.resx">
+      <DependentUpon>ECFform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,6 +141,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TCFform.resx">
+      <DependentUpon>TCFform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPUserControl.resx">
+      <DependentUpon>UCPUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControl2.resx">
       <DependentUpon>UserControl2.cs</DependentUpon>
     </EmbeddedResource>

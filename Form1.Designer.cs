@@ -45,6 +45,8 @@ namespace FunctionPoint1
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FPTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.useCasePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enterUCPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.FPTab.SuspendLayout();
             this.SuspendLayout();
@@ -77,28 +79,28 @@ namespace FunctionPoint1
             // newFile
             // 
             this.newFile.Name = "newFile";
-            this.newFile.Size = new System.Drawing.Size(180, 22);
+            this.newFile.Size = new System.Drawing.Size(103, 22);
             this.newFile.Text = "New";
             this.newFile.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openFile
             // 
             this.openFile.Name = "openFile";
-            this.openFile.Size = new System.Drawing.Size(180, 22);
+            this.openFile.Size = new System.Drawing.Size(103, 22);
             this.openFile.Text = "Open";
             this.openFile.Click += new System.EventHandler(this.openFile_Click);
             // 
             // saveFile
             // 
             this.saveFile.Name = "saveFile";
-            this.saveFile.Size = new System.Drawing.Size(180, 22);
+            this.saveFile.Size = new System.Drawing.Size(103, 22);
             this.saveFile.Text = "Save";
             this.saveFile.Click += new System.EventHandler(this.saveFile_Click);
             // 
             // exitFile
             // 
             this.exitFile.Name = "exitFile";
-            this.exitFile.Size = new System.Drawing.Size(180, 22);
+            this.exitFile.Size = new System.Drawing.Size(103, 22);
             this.exitFile.Text = "Exit";
             this.exitFile.Click += new System.EventHandler(this.exitFile_Click);
             // 
@@ -127,17 +129,19 @@ namespace FunctionPoint1
             // metricToolStripMenuItem
             // 
             this.metricToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.functionpointMetric});
+            this.functionpointMetric,
+            this.useCasePointToolStripMenuItem});
             this.metricToolStripMenuItem.Name = "metricToolStripMenuItem";
             this.metricToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.metricToolStripMenuItem.Text = "Metrics";
+            this.metricToolStripMenuItem.Click += new System.EventHandler(this.metricToolStripMenuItem_Click);
             // 
             // functionpointMetric
             // 
             this.functionpointMetric.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.enterFPDataToolStripMenuItem});
             this.functionpointMetric.Name = "functionpointMetric";
-            this.functionpointMetric.Size = new System.Drawing.Size(152, 22);
+            this.functionpointMetric.Size = new System.Drawing.Size(180, 22);
             this.functionpointMetric.Text = "Function Point";
             this.functionpointMetric.Click += new System.EventHandler(this.functionpointMetric_Click);
             // 
@@ -175,6 +179,22 @@ namespace FunctionPoint1
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Welcome";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // useCasePointToolStripMenuItem
+            // 
+            this.useCasePointToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.enterUCPToolStripMenuItem});
+            this.useCasePointToolStripMenuItem.Name = "useCasePointToolStripMenuItem";
+            this.useCasePointToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.useCasePointToolStripMenuItem.Text = "Use Case Point";
+            // 
+            // enterUCPToolStripMenuItem
+            // 
+            this.enterUCPToolStripMenuItem.Name = "enterUCPToolStripMenuItem";
+            this.enterUCPToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.enterUCPToolStripMenuItem.Text = "Enter UCP";
+            this.enterUCPToolStripMenuItem.Click += new System.EventHandler(this.enterUCPToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -211,6 +231,8 @@ namespace FunctionPoint1
         private System.Windows.Forms.ToolStripMenuItem enterFPDataToolStripMenuItem;
         private System.Windows.Forms.TabControl FPTab;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.ToolStripMenuItem useCasePointToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem enterUCPToolStripMenuItem;
     }
 }
 
