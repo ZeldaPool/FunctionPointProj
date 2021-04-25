@@ -42,11 +42,12 @@ namespace FunctionPoint1
             this.metricToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionpointMetric = new System.Windows.Forms.ToolStripMenuItem();
             this.enterFPDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useCasePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enterUCPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FPTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.useCasePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.enterUCPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.FPTab.SuspendLayout();
             this.SuspendLayout();
@@ -130,7 +131,8 @@ namespace FunctionPoint1
             // 
             this.metricToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.functionpointMetric,
-            this.useCasePointToolStripMenuItem});
+            this.useCasePointToolStripMenuItem,
+            this.toolStripMenuItem2});
             this.metricToolStripMenuItem.Name = "metricToolStripMenuItem";
             this.metricToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.metricToolStripMenuItem.Text = "Metrics";
@@ -151,6 +153,21 @@ namespace FunctionPoint1
             this.enterFPDataToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.enterFPDataToolStripMenuItem.Text = "Enter FP Data";
             this.enterFPDataToolStripMenuItem.Click += new System.EventHandler(this.enterFPDataToolStripMenuItem_Click);
+            // 
+            // useCasePointToolStripMenuItem
+            // 
+            this.useCasePointToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.enterUCPToolStripMenuItem});
+            this.useCasePointToolStripMenuItem.Name = "useCasePointToolStripMenuItem";
+            this.useCasePointToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.useCasePointToolStripMenuItem.Text = "Use Case Point";
+            // 
+            // enterUCPToolStripMenuItem
+            // 
+            this.enterUCPToolStripMenuItem.Name = "enterUCPToolStripMenuItem";
+            this.enterUCPToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.enterUCPToolStripMenuItem.Text = "Enter UCP";
+            this.enterUCPToolStripMenuItem.Click += new System.EventHandler(this.enterUCPToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -181,20 +198,12 @@ namespace FunctionPoint1
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
-            // useCasePointToolStripMenuItem
+            // toolStripMenuItem2
             // 
-            this.useCasePointToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.enterUCPToolStripMenuItem});
-            this.useCasePointToolStripMenuItem.Name = "useCasePointToolStripMenuItem";
-            this.useCasePointToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.useCasePointToolStripMenuItem.Text = "Use Case Point";
-            // 
-            // enterUCPToolStripMenuItem
-            // 
-            this.enterUCPToolStripMenuItem.Name = "enterUCPToolStripMenuItem";
-            this.enterUCPToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.enterUCPToolStripMenuItem.Text = "Enter UCP";
-            this.enterUCPToolStripMenuItem.Click += new System.EventHandler(this.enterUCPToolStripMenuItem_Click);
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(200, 22);
+            this.toolStripMenuItem2.Text = "Software Maturity Index";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // Form1
             // 
@@ -233,6 +242,7 @@ namespace FunctionPoint1
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ToolStripMenuItem useCasePointToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enterUCPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
 

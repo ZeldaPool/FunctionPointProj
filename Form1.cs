@@ -20,6 +20,7 @@ namespace FunctionPoint1
         ProjectDetails projDet;
         UserControl2 useCon;
         UCPUserControl ucpUC;
+        SMI smiUC;
 
         //FP
         List<DataStorage> dslist = new List<DataStorage>();
@@ -30,11 +31,16 @@ namespace FunctionPoint1
         List<UCPUserControl> ucpList = new List<UCPUserControl>();
 
 
+        List<SMI> smiuclist = new List<SMI>();
+        List<List<SMIDataStorage>> smidslist = new List<List<SMIDataStorage>>();
+
         public List<DataStorage> Dslist { get => dslist; set => dslist = value; }
         public List<UserControl2> UcList { get => ucList; set => ucList = value; }
         //UCP
         public List<UCPDataStorage> Ucpdslist { get => ucpdslist; set => ucpdslist = value; }
         public List<UCPUserControl> UcpList { get => ucpList; set => ucpList = value; }
+        public List<List<SMIDataStorage>> Smilist { get => smidslist; set => smidslist = value; }
+        public List<SMI> Smiuclist { get => smiuclist; set => smiuclist = value; }
 
 
 
@@ -60,10 +66,25 @@ namespace FunctionPoint1
 
         private void exitFile_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Confirm Exit?", "Exit", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            MessageBoxManager.Abort = "Save";
+            MessageBoxManager.Retry = "Discard";
+            MessageBoxManager.Ignore = "Cancel";
+            MessageBoxManager.Register();
+            DialogResult d;
+            d = MessageBox.Show("Save or Discard Changes", "Exit", MessageBoxButtons.AbortRetryIgnore);
+            if(d == DialogResult.Abort)
+            {
+                saveFile_Click(sender,e);                
+            }
+            if(d == DialogResult.Retry)
             {
                 Application.Exit();
+            }              
+            if(d == DialogResult.Ignore)
+            {                
             }
+            MessageBoxManager.Unregister();
+
         }
 
         private void languagePreference_Click(object sender, EventArgs e)
@@ -140,7 +161,7 @@ namespace FunctionPoint1
             projDet = newProj.ProjDet;
             projDet.Dslist = dslist;
             projDet.Ucplist = Ucpdslist;
-
+            projDet.Smilist = smidslist;
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.DefaultExt = ".ms";
@@ -158,7 +179,6 @@ namespace FunctionPoint1
                 }
 
             }
-
         }
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -175,6 +195,7 @@ namespace FunctionPoint1
             }
             this.dslist = new List<DataStorage>();
             this.ucpdslist = new List<UCPDataStorage>();
+            this.smidslist = new List<List<SMIDataStorage>>();
         }
 
         public void loadPanes()
@@ -215,6 +236,23 @@ namespace FunctionPoint1
                 Ucpdslist.Add(ucpuseCon.UcpDS);
             });
 
+            projDet.Smilist.ForEach(x =>
+            {
+                SMI smiusecon = new SMI(x);
+                smiuclist.Add(smiusecon);
+                smiusecon.Dock = DockStyle.Fill;
+                TabPage myTabPage = new TabPage("Software Maturity Index");//Create new tabpage
+                myTabPage.Controls.Add(smiusecon);
+                FPTab.TabPages.Add(myTabPage);
+
+                smiusecon.SmiDataStoreList = x;
+
+                List<SMIDataStorage> tempsmidslist = new List<SMIDataStorage>();
+
+                tempsmidslist = smiusecon.SmiDataStoreList;
+                smidslist.Add(smiusecon.SmiDataStoreList);
+            });
+
 
         }
 
@@ -253,7 +291,18 @@ namespace FunctionPoint1
 
         private void metricToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (newProj == null)
+            {
+                enterFPDataToolStripMenuItem.Enabled = false;
+                enterUCPToolStripMenuItem.Enabled = false;
+                toolStripMenuItem2.Enabled = false;
+            }
+            else
+            {
+                enterFPDataToolStripMenuItem.Enabled = true;
+                enterUCPToolStripMenuItem.Enabled = true;
+                toolStripMenuItem2.Enabled = true;
+            }
         }
 
         private void enterUCPToolStripMenuItem_Click(object sender, EventArgs e)
@@ -270,6 +319,20 @@ namespace FunctionPoint1
             Ucpdslist.Add(ucpUC.UcpDS);
 
            
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            smiUC = new SMI(new List<SMIDataStorage>());
+            smiuclist.Add(smiUC);
+            smiUC.Dock = DockStyle.Fill;
+            TabPage myTabPage = new TabPage("Software Maturity Index");//Create new tabpage
+            myTabPage.Controls.Add(smiUC);
+            FPTab.TabPages.Add(myTabPage);
+            // List<SMIDataStorage> tempSmiDsList=new List<SMIDataStorage>();
+            // tempSmiDsList=smiUC.SmiDataStoreList;
+            smidslist.Add(smiUC.SmiDataStoreList);       
+            
         }
     }
 }
