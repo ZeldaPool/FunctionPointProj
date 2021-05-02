@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace FunctionPoint1
 {
     partial class Form1
@@ -44,10 +46,12 @@ namespace FunctionPoint1
             this.enterFPDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useCasePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enterUCPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restoreStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.FPTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabclose = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.FPTab.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +63,8 @@ namespace FunctionPoint1
             this.editToolStripMenuItem,
             this.preferencesToolStripMenuItem,
             this.metricToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.helpToolStripMenuItem,
+            this.restoreStrip});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(905, 24);
@@ -143,7 +148,7 @@ namespace FunctionPoint1
             this.functionpointMetric.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.enterFPDataToolStripMenuItem});
             this.functionpointMetric.Name = "functionpointMetric";
-            this.functionpointMetric.Size = new System.Drawing.Size(180, 22);
+            this.functionpointMetric.Size = new System.Drawing.Size(200, 22);
             this.functionpointMetric.Text = "Function Point";
             this.functionpointMetric.Click += new System.EventHandler(this.functionpointMetric_Click);
             // 
@@ -159,7 +164,7 @@ namespace FunctionPoint1
             this.useCasePointToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.enterUCPToolStripMenuItem});
             this.useCasePointToolStripMenuItem.Name = "useCasePointToolStripMenuItem";
-            this.useCasePointToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.useCasePointToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.useCasePointToolStripMenuItem.Text = "Use Case Point";
             // 
             // enterUCPToolStripMenuItem
@@ -169,6 +174,13 @@ namespace FunctionPoint1
             this.enterUCPToolStripMenuItem.Text = "Enter UCP";
             this.enterUCPToolStripMenuItem.Click += new System.EventHandler(this.enterUCPToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(200, 22);
+            this.toolStripMenuItem2.Text = "Software Maturity Index";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
@@ -176,13 +188,20 @@ namespace FunctionPoint1
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
+            // restoreStrip
+            // 
+            this.restoreStrip.Name = "restoreStrip";
+            this.restoreStrip.Size = new System.Drawing.Size(123, 20);
+            this.restoreStrip.Text = "Restore Closed Tabs";
+            this.restoreStrip.Click += new System.EventHandler(this.restoreStrip_Click);
+            // 
             // FPTab
             // 
             this.FPTab.Controls.Add(this.tabPage1);
-            this.FPTab.Location = new System.Drawing.Point(0, 27);
+            this.FPTab.Location = new System.Drawing.Point(0, 55);
             this.FPTab.Name = "FPTab";
             this.FPTab.SelectedIndex = 0;
-            this.FPTab.Size = new System.Drawing.Size(905, 697);
+            this.FPTab.Size = new System.Drawing.Size(905, 669);
             this.FPTab.TabIndex = 3;
             // 
             // tabPage1
@@ -192,24 +211,28 @@ namespace FunctionPoint1
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(897, 671);
+            this.tabPage1.Size = new System.Drawing.Size(897, 643);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Welcome";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
-            // toolStripMenuItem2
+            // tabclose
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(200, 22);
-            this.toolStripMenuItem2.Text = "Software Maturity Index";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            this.tabclose.Location = new System.Drawing.Point(778, 27);
+            this.tabclose.Name = "tabclose";
+            this.tabclose.Size = new System.Drawing.Size(123, 22);
+            this.tabclose.TabIndex = 4;
+            this.tabclose.Text = "Close Tab";
+            this.tabclose.UseVisualStyleBackColor = true;
+            this.tabclose.Click += new System.EventHandler(this.tabclose_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(905, 723);
+            this.Controls.Add(this.tabclose);
             this.Controls.Add(this.FPTab);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";
@@ -243,6 +266,8 @@ namespace FunctionPoint1
         private System.Windows.Forms.ToolStripMenuItem useCasePointToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enterUCPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.Button tabclose;
+        private System.Windows.Forms.ToolStripMenuItem restoreStrip;
     }
 }
 

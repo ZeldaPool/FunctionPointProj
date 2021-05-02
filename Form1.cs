@@ -21,6 +21,7 @@ namespace FunctionPoint1
         UserControl2 useCon;
         UCPUserControl ucpUC;
         SMI smiUC;
+        int tabIndex = 0;
 
         //FP
         List<DataStorage> dslist = new List<DataStorage>();
@@ -34,6 +35,9 @@ namespace FunctionPoint1
         List<SMI> smiuclist = new List<SMI>();
         List<List<SMIDataStorage>> smidslist = new List<List<SMIDataStorage>>();
 
+        IDictionary<string, TabPage> closedTabs = new Dictionary<string, TabPage>();
+        // List<TabPage> closedTabs= new List<TabPage>();
+
         public List<DataStorage> Dslist { get => dslist; set => dslist = value; }
         public List<UserControl2> UcList { get => ucList; set => ucList = value; }
         //UCP
@@ -41,6 +45,8 @@ namespace FunctionPoint1
         public List<UCPUserControl> UcpList { get => ucpList; set => ucpList = value; }
         public List<List<SMIDataStorage>> Smilist { get => smidslist; set => smidslist = value; }
         public List<SMI> Smiuclist { get => smiuclist; set => smiuclist = value; }
+        public IDictionary<string, TabPage> ClosedTabs { get => closedTabs; set => closedTabs = value; }
+
 
 
 
@@ -334,5 +340,43 @@ namespace FunctionPoint1
             smidslist.Add(smiUC.SmiDataStoreList);       
             
         }
+
+        private void tabclose_Click(object sender, EventArgs e)
+        {
+            
+            if(FPTab.SelectedIndex == 0)
+            {
+                MessageBox.Show("Cannot close the welcome page !");
+            }
+            else if(FPTab.TabCount > 0)
+            {
+              string name=FPTab.SelectedTab.Text+ " " + (tabIndex);
+                ClosedTabs.Add(name, FPTab.SelectedTab);
+                restoreStrip.DropDownItems.Add(name);
+
+                // restoreStrip.DropDownItems.Add(new MenuItem(name, MenuItemNew_Click);
+                FPTab.TabPages.RemoveAt(FPTab.SelectedIndex);
+            }
+            else
+            {
+                MessageBox.Show("Please open/create a tab to close!");
+            }
+        }
+
+        public void restoreStrip_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+            string clickedtext = e.ClickedItem.Text;
+            MessageBox.Show(clickedtext);
+        }
+
+        private void RestoreMenuItemNew_Click(object sender, EventArgs e){
+        
+        }
+        private void restoreStrip_Click(object sender, EventArgs e)
+        {
+            
+        }
+
     }
 }
